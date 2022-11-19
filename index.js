@@ -30,6 +30,23 @@ const questions = [
     choices: ["MIT", "APACHE 2.0", "GPL 3.0", "BSD 3", "none"],
     name: "license",
   },
+  {
+    type: "input",
+    message: "What command should be run to install dependencies?",
+    name: "install",
+  },
+  {
+    type: "input",
+    message: "What command should be run to run tests?",
+    name: "tests",
+  },
+  {
+    type: "input",
+    message: "What does the user need to know about contributing to the repo?",
+    name: "contribute",
+  },
+  
+
 ];
 
 inquirer.prompt(questions).then((response) => {
