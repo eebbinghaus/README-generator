@@ -3,6 +3,47 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 
 // TODO: Create an array of questions for user input
+
+
+const createREADME = ({username, email, project, description, license, install, tests, contribute }) =>
+`# ${project}
+---
+![license]
+
+## Description
+
+${description}
+
+## Table of Contents
+
+* [Installation](#installation)
+* [License](#license)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
+
+## Installation
+
+${install}
+
+## License
+
+${license}
+
+## Contributing
+
+${contribute}
+
+## Tests
+
+${tests}
+
+## Questions 
+
+Contact me with questions at Email: ${email}, or GitHub: ${username}
+`;
+
+
 const questions = [
   {
     type: "input",
@@ -45,16 +86,21 @@ const questions = [
     message: "What does the user need to know about contributing to the repo?",
     name: "contribute",
   },
-  
+
 
 ];
 
 inquirer.prompt(questions).then((response) => {
-  console.log(response);
+  const readMeContent = createREADME(response);
+
+  fs.writeFile('README.md', readMeContent, (err) => 
+  err ? console.log(err) : console.log('README.md has been created')
+  ); 
+
 });
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+
 
 // TODO: Create a function to initialize app
 function init() {}
