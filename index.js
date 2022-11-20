@@ -64,7 +64,7 @@ ${tests}
 
 ---
 
-## Questions / Issues
+## Questions
 
 Contact me with any questions about the repo or report any issues at ${email}
 
