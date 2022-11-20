@@ -1,18 +1,30 @@
-// TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
 
 // TODO: Create an array of questions for user input
 
-
-const createREADME = ({username, email, project, description, license, install, tests, contribute }) =>
-`# ${project}
+const createREADME = ({
+  username,
+  email,
+  project,
+  description,
+  license,
+  install,
+  tests,
+  contribute,
+}) =>
+  `# ${project}
 ---
-![license]
+![license](https://img.shields.io/badge/license-${license
+    .split(" ")
+    .join("")}-green.svg)
+   
 
 ## Description
 
 ${description}
+
+---
 
 ## Table of Contents
 
@@ -22,27 +34,43 @@ ${description}
 * [Tests](#tests)
 * [Questions](#questions)
 
+---
+
 ## Installation
+
+To install the necessary dependancies, run the following command:
 
 ${install}
 
+---
+
 ## License
 
-${license}
+This project is licensed under the ${license} license.
+
+---
 
 ## Contributing
 
 ${contribute}
 
+---
+
 ## Tests
 
-${tests}
+To run tests, run the following command:
 
-## Questions 
+${tests} 
 
-Contact me with questions at Email: ${email}, or GitHub: ${username}
+---
+
+## Questions / Issues
+
+Contact me with any questions about the repo or report any issues at ${email}
+
+
+Find more of my projects at my GitHub: [${username}](https://github.com/${username})
 `;
-
 
 const questions = [
   {
@@ -86,21 +114,17 @@ const questions = [
     message: "What does the user need to know about contributing to the repo?",
     name: "contribute",
   },
-
-
 ];
 
 inquirer.prompt(questions).then((response) => {
   const readMeContent = createREADME(response);
 
-  fs.writeFile('README.md', readMeContent, (err) => 
-  err ? console.log(err) : console.log('README.md has been created')
-  ); 
-
+  fs.writeFile("README.md", readMeContent, (err) =>
+    err ? console.log(err) : console.log("README.md has been created")
+  );
 });
 
 // TODO: Create a function to write README file
-
 
 // TODO: Create a function to initialize app
 function init() {}
